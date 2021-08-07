@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     Animation top, bottom;
     ImageView logo;
     TextView slogan;
-    private static int SPLASH_SCREEN = 3000;
+    private static int SPLASH_SCREEN = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

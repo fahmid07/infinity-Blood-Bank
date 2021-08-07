@@ -30,12 +30,12 @@ public class Login extends AppCompatActivity {
     }
 
     public void SkipButtonClick(View v){
-        Intent i = new Intent(this, CreateAccount.class);
+        Intent i = new Intent(this, dashboard.class);
         startActivity(i);
     }
 
     public void SignButtonClick(View v){
-        Intent i = new Intent(this, CreateAccount.class);
+        Intent i = new Intent(this, dashboard.class);
         startActivity(i);
     }
 
