@@ -24,7 +24,7 @@
         android:text="Here you go, blood hero!"
         android:transitionName="logo_text"
         android:textColor="@color/black"
-        android:textSize="30sp" />
+        android:textSize="27sp" />
 
     <TextView
         android:id="@+id/signin_text"
@@ -53,8 +53,10 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/usernametxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 >
 
             </com.google.android.material.textfield.TextInputEditText>
@@ -82,45 +84,52 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:layout_width="200dp"
+            android:id="@+id/forgot"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:background="#00000000"
             android:elevation="0dp"
+            android:onClick="ForgotButtonClick"
             android:text="Forgot password?"
-            android:textColor="#000"/>
+            android:textColor="#000" />
 
         <Button
+            android:id="@+id/signin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
-            app:backgroundTint="@null"
             android:background="#DF1D26"
+            android:onClick="SignButtonClick"
             android:text="Sign in"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            app:backgroundTint="@null" />
 
         <Button
+            android:id="@+id/createac"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            app:backgroundTint="@null"
             android:background="#000000"
+            android:onClick="CreateButtonClick"
             android:text="Create Account"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            app:backgroundTint="@null" />
 
         <Button
+            android:id="@+id/skip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="160dp"
             android:layout_marginBottom="10dp"
-            app:backgroundTint="@null"
             android:background="#00000000"
+            android:onClick="SkipButtonClick"
             android:text="Skip for now"
             android:textColor="#000000"
-            />
+            app:backgroundTint="@null" />
 
 
     </LinearLayout>
