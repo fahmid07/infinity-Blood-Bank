@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="#fff">
+
+    <ImageView
+        android:id="@+id/logo_Image"
+        android:layout_width="150dp"
+        android:layout_height="106dp"
+        android:src="@drawable/logo1"
+        android:transitionName="logo_image" />
+
+    <TextView
+        android:id="@+id/logo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tauri"
+        android:text="Here you go, blood hero!"
+        android:transitionName="logo_text"
+        android:textColor="@color/black"
+        android:textSize="27sp"
+        />
+
+    <TextView
+        android:id="@+id/signin_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit the 6 digit OTP here"
+        android:textColor="@color/mycolor"
+        android:textSize="22sp"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/otp"
+            android:hint="OTP"
+            app:prefixText="+880"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/otptxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                >
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <Button
+            android:id="@+id/submitotp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="#DF1D26"
+            android:onClick="SignButtonClick"
+            android:text="Submit"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="@null" />
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

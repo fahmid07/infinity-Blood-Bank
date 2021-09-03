@@ -8,10 +8,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
     Button in, up, skp, frgt;
+    com.google.android.material.textfield.TextInputEditText phone, pass;
+    FirebaseUser currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +26,16 @@ public class Login extends AppCompatActivity {
         up = findViewById(R.id.createac);
         skp = findViewById(R.id.skip);
         frgt = findViewById(R.id.forgot);
+
+        phone = findViewById(R.id.usernametxt);
+        pass = findViewById(R.id.passwordtxt);
+
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            Intent intent = new Intent(this, dashboard.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     public void CreateButtonClick(View v){

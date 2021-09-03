@@ -150,10 +150,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="5dp"
-            app:backgroundTint="@null"
             android:background="#DF1D26"
+            android:onClick="SubmitButtonClick"
             android:text="Submit"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            app:backgroundTint="@null" />
 
     </LinearLayout>
 
