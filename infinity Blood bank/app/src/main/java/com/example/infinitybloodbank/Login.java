@@ -89,19 +89,22 @@ public class Login extends AppCompatActivity {
             pass.requestFocus();
             return;
         }
+        System.out.println("here 3");
         ref.child(phone_no).addListenerForSingleValueEvent(listener);
-
+        System.out.println("here 2");
     }
 
     ValueEventListener listener = new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
+            System.out.println("hay 1");
             if(snapshot.exists()){
                 String password = snapshot.child("pass").getValue(String.class);
+                System.out.println("here 11");
                 String passW = pass.getText().toString();
                 String phone_no = phone.getText().toString();
                 if(password.equals(passW)){
-
+                    System.out.println("here 12");
                     auth.signInWithEmailAndPassword(phone_no+"@gmail.com", password)
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -114,17 +117,20 @@ public class Login extends AppCompatActivity {
                                 public void onSuccess(AuthResult authResult) {
                                     finish();
                                     Intent i = new Intent(Login.this, dashboard.class);
+                                    i.putExtra("phone", phone_no);
                                     startActivity(i);
                                 }
                             });
 
                 }
             }
+            else System.out.println("here 1");
         }
 
         @Override
         public void onCancelled(@NonNull  DatabaseError error) {
             Toast.makeText(Login.this, error.toString(), Toast.LENGTH_LONG).show();
+            System.out.println("hehere 1");
         }
     };
 

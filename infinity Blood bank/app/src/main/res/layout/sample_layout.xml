@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:id="@+id/arblood"
+        android:text="Blood Group: B+"
+        android:fontFamily="@font/tauri"
+        android:textSize="18sp"
+        android:textColor="@color/mycolor">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:id="@+id/arloc"
+        android:text="Location: Hatirjheel"
+        android:fontFamily="@font/tauri"
+        android:textSize="18sp"
+        android:textColor="@color/mycolor">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:id="@+id/arreas"
+        android:text="Reason: Kidney Disease"
+        android:fontFamily="@font/tauri"
+        android:textSize="16sp">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:id="@+id/arnumber"
+        android:text="Number: +8801876096648"
+        android:fontFamily="@font/tauri"
+        android:textSize="16sp"
+        android:textColor="@color/mycolor">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:id="@+id/ardetails"
+        android:text="Distric: Chittagong.            Age: 54            Gender: Male"
+        android:fontFamily="@font/tauri"
+        android:textSize="12sp">
+
+    </TextView>
+
+
+</LinearLayout>

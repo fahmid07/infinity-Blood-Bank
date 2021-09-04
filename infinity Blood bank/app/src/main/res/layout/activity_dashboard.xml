@@ -30,7 +30,8 @@
             android:id="@+id/requestBlood"
             android:src="@drawable/rqb"
             android:layout_marginTop="50dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:onClick="RequestButtonClick"/>
 
         <ImageView
             android:layout_width="match_parent"
@@ -39,7 +40,8 @@
             android:id="@+id/Allrequest"
             android:src="@drawable/allrq"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:onClick="AllRequestButtonClick"/>
 
         <ImageView
             android:layout_width="match_parent"
