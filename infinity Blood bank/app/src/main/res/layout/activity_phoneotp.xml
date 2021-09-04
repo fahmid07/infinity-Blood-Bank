@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login"
+    tools:context=".phoneotp"
     android:orientation="vertical"
     android:padding="20dp"
     android:background="#fff">
@@ -50,7 +50,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/otp"
             android:hint="OTP"
-            app:prefixText="+880"
+            app:counterEnabled="true"
+            app:counterMaxLength="6"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
 
@@ -59,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                >
+                android:maxLength="6">
 
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -74,10 +75,11 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:background="#DF1D26"
-            android:onClick="SignButtonClick"
             android:text="Submit"
+            android:onClick="SubmitButtonClick"
             android:textColor="#FFFFFF"
-            app:backgroundTint="@null" />
+            app:backgroundTint="@null"
+            />
 
 
 

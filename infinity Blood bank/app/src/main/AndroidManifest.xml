@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.InfinityBloodBank">
+        android:theme="@style/Theme.InfinityBloodBank"
+        >
         <activity android:name=".phoneotp"></activity>
         <activity android:name=".dashboard" />
         <activity android:name=".CreateAccount" />

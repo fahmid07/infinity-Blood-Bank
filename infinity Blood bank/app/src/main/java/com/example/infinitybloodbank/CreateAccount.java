@@ -1,30 +1,42 @@
 package com.example.infinitybloodbank;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
+//import java.util.logging.Handler;
+
 
 public class CreateAccount extends AppCompatActivity {
 
     AutoCompleteTextView dst, bld;
     com.google.android.material.textfield.TextInputEditText phone, pass, name;
     private FirebaseAuth mAuth;
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
+    String otpid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,11 +105,33 @@ public class CreateAccount extends AppCompatActivity {
             return;
         }
 
+        User user = new User(phone_no, full_name, password, district, blood);
+        FirebaseDatabase.getInstance().getReference("Users").child(phone_no).setValue(user);
 
-        Intent i = new Intent(this, phoneotp.class);
-        i.putExtra("phone", phone_no);
+        mAuth.createUserWithEmailAndPassword(phone_no+"@gmail.com", password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(CreateAccount.this,"Registration Complete",Toast.LENGTH_LONG).show();
+                            finish();
+                            Intent i = new Intent(CreateAccount.this, dashboard.class);
+                            startActivity(i);
+                        }else{
+                            Toast.makeText(CreateAccount.this,"Registration Error",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+        //Intent i = new Intent(CreateAccount.this , Login.class);
+        /*i.putExtra("phone", phone_no);
         i.putExtra("pass", password);
         i.putExtra("name", full_name);
-        startActivity(i);
+        i.putExtra("blood", blood);
+        i.putExtra("district", district);*/
+        //startActivity(i);
     }
+
+
+
 }
