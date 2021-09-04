@@ -3,7 +3,11 @@ package com.example.infinitybloodbank;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -47,6 +51,7 @@ public class AllRequest extends AppCompatActivity {
                     reqlist.add(req);
                 }
                 listview.setAdapter(customAdapter1);
+
             }
 
             @Override
@@ -56,4 +61,7 @@ public class AllRequest extends AppCompatActivity {
         });
         super.onStart();
     }
+
+
+
 }
