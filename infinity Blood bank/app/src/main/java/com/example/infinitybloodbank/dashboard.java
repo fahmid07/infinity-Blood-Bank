@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class dashboard extends AppCompatActivity {
@@ -40,6 +41,18 @@ public class dashboard extends AppCompatActivity {
     public void AllRequestButtonClick(View v){
         Intent i = new Intent(dashboard.this , AllRequest.class);
         i.putExtra("phone", phnkey);
+        startActivity(i);
+    }
+
+    public void AllUsersButtonClick(View v){
+        Intent i = new Intent(dashboard.this , all_user.class);
+        i.putExtra("phone", phnkey);
+        startActivity(i);
+    }
+
+    public void AccountButtonClick(View v){
+        FirebaseAuth.getInstance().signOut();
+        Intent i = new Intent(dashboard.this , Login.class);
         startActivity(i);
     }
 }

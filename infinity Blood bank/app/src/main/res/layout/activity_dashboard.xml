@@ -50,7 +50,8 @@
             android:id="@+id/SearchBlood"
             android:src="@drawable/searchd"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:onClick="AllUsersButtonClick"/>
 
         <ImageView
             android:layout_width="match_parent"
@@ -59,7 +60,8 @@
             android:id="@+id/Account"
             android:src="@drawable/accnt"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:onClick="AccountButtonClick" />
 
         <ImageView
             android:layout_width="match_parent"

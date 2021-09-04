@@ -24,44 +24,43 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomAdapter1 extends ArrayAdapter<Request> {
-    private List<Request> requestlist;
+public class CustomAdapter2 extends ArrayAdapter<User> {
+    private List<User> userlist;
     private Activity context;
     public int flag;
 
-    public CustomAdapter1(Activity context, List<Request> requestlist) {
-        super(context, R.layout.sample_layout, requestlist);
+    public CustomAdapter2(Activity context, List<User> userlist) {
+        super(context, R.layout.sample_layout2, userlist);
         this.context = context;
-        this.requestlist = requestlist;
+        this.userlist = userlist;
     }
 
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = context.getLayoutInflater();
-        View view = layoutInflater.inflate(R.layout.sample_layout, null, true);
+        View view = layoutInflater.inflate(R.layout.sample_layout2, null, true);
 
         flag = position;
-        Request request = requestlist.get(position);
-        TextView t1 = view.findViewById(R.id.arblood);
-        TextView t2 = view.findViewById(R.id.arloc);
-        TextView t3 = view.findViewById(R.id.arreas);
-        TextView t4 = view.findViewById(R.id.arnumber);
-        TextView t5 = view.findViewById(R.id.ardetails);
+        User user = userlist.get(position);
+        TextView t1 = view.findViewById(R.id.apname);
+        TextView t2 = view.findViewById(R.id.apblood);
+        TextView t3 = view.findViewById(R.id.apdistrict);
+        TextView t4 = view.findViewById(R.id.apnumber);
 
-        t1.setText("Blood Group: " + request.bg);
-        t2.setText("Location: "+request.location);
-        t3.setText("Reason: "+request.reason);
-        t4.setText("Number: +880"+request.phone);
-        t5.setText("District: "+request.district  + "       Age: "+request.age + "      Gender: "+request.gender);
+        t1.setText("Name: " + user.name);
+        t2.setText("Blood Group: "+user.blood);
+        t3.setText("Distrct: "+user.district);
+        t4.setText("Number: +880"+user.phone);
 
 
         //view.setOnClickListener(mMyButtonClickListener);
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"+"+880"+requestlist.get(position).phone));
+                intent.setData(Uri.parse("tel:"+"+880"+userlist.get(position).phone));
                 context.startActivity(intent);
             }
         });
@@ -72,7 +71,7 @@ public class CustomAdapter1 extends ArrayAdapter<Request> {
         @Override
         public void onClick(View v) {
             Intent intent= new Intent(Intent.ACTION_DIAL);
-            intent.setData(Uri.parse("tel:"+"+880"+requestlist.get(flag).phone));
+            intent.setData(Uri.parse("tel:"+"+880"+userlist.get(flag).phone));
             context.startActivity(intent);
         } };*/
 }
