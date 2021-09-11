@@ -137,7 +137,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/gender"
-            app:startIconDrawable="@drawable/blood"
+            app:startIconDrawable="@drawable/gender"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp" >
@@ -157,7 +157,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/age"
             android:hint="Age"
-            app:startIconDrawable="@drawable/person"
+            app:startIconDrawable="@drawable/age"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             >
 

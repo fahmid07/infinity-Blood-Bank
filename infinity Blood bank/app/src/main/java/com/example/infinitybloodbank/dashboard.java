@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class dashboard extends AppCompatActivity {
 
-    String phnkey;
+    String phnkey, nmkey;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +25,7 @@ public class dashboard extends AppCompatActivity {
 
         Intent i = getIntent();
         phnkey = i.getStringExtra("phone");
+        nmkey = i.getStringExtra("name");
     }
 
     public void RequestButtonClick(View v){
@@ -51,8 +52,10 @@ public class dashboard extends AppCompatActivity {
     }
 
     public void AccountButtonClick(View v){
-        FirebaseAuth.getInstance().signOut();
-        Intent i = new Intent(dashboard.this , Login.class);
+
+        Intent i = new Intent(dashboard.this , Account.class);
+        i.putExtra("phone", phnkey);
+        i.putExtra("name", nmkey);
         startActivity(i);
     }
 }

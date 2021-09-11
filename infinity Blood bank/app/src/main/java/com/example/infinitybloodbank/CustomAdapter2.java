@@ -1,6 +1,8 @@
 package com.example.infinitybloodbank;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,8 +28,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomAdapter2 extends ArrayAdapter<User> {
+public class CustomAdapter2 extends ArrayAdapter<User> implements Filterable {
     private List<User> userlist;
+    private List<User> orig;
     private Activity context;
     public int flag;
 
@@ -59,12 +64,129 @@ public class CustomAdapter2 extends ArrayAdapter<User> {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                /*String s = "Name: " + userlist.get(position).name;
+                String s1 = "Blood Group: " + userlist.get(position).blood;
+                String s2 = "District: " + userlist.get(position).district;
+                String s3 = "Number: +880" + userlist.get(position).phone;
+                String s4 = "#infinty_Blood_bank";
+
+                String ss = s + System.lineSeparator() + s1 + System.lineSeparator() + s2 + System.lineSeparator() + s3 + System.lineSeparator() + System.lineSeparator() + s4;
+
+                ClipboardManager cm = (ClipboardManager) context
+                        .getSystemService(Context.CLIPBOARD_SERVICE);
+                cm.setText(ss);*/
+
                 Intent intent= new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:"+"+880"+userlist.get(position).phone));
                 context.startActivity(intent);
             }
         });
+
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                //parent.getChildAt(position).setBackgroundColor();
+                String s = "Name: " + userlist.get(position).name;
+                String s1 = "Blood Group: " + userlist.get(position).blood;
+                String s2 = "District: " + userlist.get(position).district;
+                String s3 = "Number: +880" + userlist.get(position).phone;
+                String s4 = "#infinty_Blood_bank";
+
+                String ss = s + System.lineSeparator() + s1 + System.lineSeparator() + s2 + System.lineSeparator() + s3 + System.lineSeparator() + System.lineSeparator() + s4;
+
+                ClipboardManager cm = (ClipboardManager) context
+                        .getSystemService(Context.CLIPBOARD_SERVICE);
+                cm.setText(ss);
+                Toast.makeText(context, "Information copied to clipboard", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
         return view;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                final FilterResults oReturn = new FilterResults();
+                final List<User> results = new  ArrayList<User>();
+                if (orig == null)
+                    orig = userlist;
+                if (constraint != null) {
+                    results.clear();
+                    if (orig != null && orig.size() > 0) {
+
+                        for (final User g : orig) {
+
+                            String t1 = g.district + ", " + g.blood;
+                            String t2 = g.district + "," + g.blood;
+                            String t3 = g.blood + ", " + g.district;
+                            String t4 = g.blood + "," + g.district;
+                            String t5 = g.blood + " " + g.district;
+                            String t6 = g.district + " " + g.blood;
+                            if (g.district
+                                    .contains(constraint.toString()))
+                                results.add(g);
+                            else if (g.blood
+                                    .contains(constraint.toString()))
+                                results.add(g);
+
+                            else if (t1
+                                    .contains(constraint.toString()))
+                                results.add(g);
+                            else if (t2
+                                    .contains(constraint.toString()))
+                                results.add(g);
+                            else if (t3
+                                    .contains(constraint.toString()))
+                                results.add(g);
+                            else if (t4
+                                    .contains(constraint.toString()))
+                                results.add(g);
+                            else if (t5
+                                    .contains(constraint.toString()))
+                                results.add(g);
+                            else if (t6
+                                    .contains(constraint.toString()))
+                                results.add(g);
+                        }
+                    }
+                    oReturn.values = results;
+                }
+                return oReturn;
+            }
+
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence constraint,
+                                          FilterResults results) {
+                userlist = (List<User>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+    }
+
+
+    @Override
+    public int getCount() {
+        return userlist.size();
+    }
+
+    @Override
+    public User getItem(int position) {
+        return userlist.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     /*private View.OnClickListener mMyButtonClickListener = new View.OnClickListener() {

@@ -10,6 +10,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,6 +31,7 @@ public class Login extends AppCompatActivity {
     FirebaseUser currentUser;
     private DatabaseReference ref;
     private FirebaseAuth auth;
+    private ProgressBar progressB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,7 @@ public class Login extends AppCompatActivity {
         skp = findViewById(R.id.skip);
         frgt = findViewById(R.id.forgot);
 
+        progressB = findViewById(R.id.progressBar);
         phone = findViewById(R.id.usernametxt);
         pass = findViewById(R.id.passwordtxt);
         ref = FirebaseDatabase.getInstance().getReference("Users");
@@ -75,6 +78,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void SignButtonClick(View v){
+        progressB.setVisibility(View.VISIBLE);
         String phone_no = phone.getText().toString();
         String passW = pass.getText().toString();
 
@@ -100,6 +104,7 @@ public class Login extends AppCompatActivity {
             System.out.println("hay 1");
             if(snapshot.exists()){
                 String password = snapshot.child("pass").getValue(String.class);
+                String name = snapshot.child("name").getValue(String.class);
                 System.out.println("here 11");
                 String passW = pass.getText().toString();
                 String phone_no = phone.getText().toString();
@@ -115,9 +120,11 @@ public class Login extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                 @Override
                                 public void onSuccess(AuthResult authResult) {
+                                    progressB.setVisibility(View.GONE);
                                     finish();
                                     Intent i = new Intent(Login.this, dashboard.class);
                                     i.putExtra("phone", phone_no);
+                                    i.putExtra("name", name);
                                     startActivity(i);
                                 }
                             });
