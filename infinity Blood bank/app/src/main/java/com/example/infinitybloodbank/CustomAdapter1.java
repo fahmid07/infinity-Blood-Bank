@@ -34,7 +34,7 @@ public class CustomAdapter1 extends ArrayAdapter<Request> implements Filterable 
     private List<Request> requestlist;
     private List<Request> orig;
     private Activity context;
-    public int flag;
+    public int flag, pr = 0;
 
     public CustomAdapter1(Activity context, List<Request> requestlist) {
         super(context, R.layout.sample_layout, requestlist);
@@ -85,6 +85,30 @@ public class CustomAdapter1 extends ArrayAdapter<Request> implements Filterable 
                 context.startActivity(intent);
 
 
+            }
+        });
+
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                parent.getChildAt(pr).setBackgroundColor(Color.WHITE);
+                parent.getChildAt(position).setBackgroundColor(0xFFEFBBCD);
+                String s = "Blood Group: " + requestlist.get(position).bg;
+                String s1 = "Location: " + requestlist.get(position).location + ", " + requestlist.get(position).district;
+                String s2 = "Reason: " + requestlist.get(position).reason;
+                String s3 = "Age: " + requestlist.get(position).age  + " (" + requestlist.get(position).gender+ ")";
+                String s4 = "Number: +880" + requestlist.get(position).phone + " (" + requestlist.get(position).name+ ")";
+                String s5 = "#infinty_Blood_bank";
+
+                String ss = s + System.lineSeparator() + s1 + System.lineSeparator() + s2 + System.lineSeparator() + s3 + System.lineSeparator() + s4 + System.lineSeparator() + System.lineSeparator() + s5;
+
+                ClipboardManager cm = (ClipboardManager) context
+                        .getSystemService(Context.CLIPBOARD_SERVICE);
+                cm.setText(ss);
+
+                Toast.makeText(context, "Information copied to clipboard", Toast.LENGTH_SHORT).show();
+                pr = position;
+                return false;
             }
         });
         return view;

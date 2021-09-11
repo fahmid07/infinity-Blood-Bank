@@ -32,7 +32,7 @@ public class CustomAdapter2 extends ArrayAdapter<User> implements Filterable {
     private List<User> userlist;
     private List<User> orig;
     private Activity context;
-    public int flag;
+    public int flag, pr  = 0;
 
     public CustomAdapter2(Activity context, List<User> userlist) {
         super(context, R.layout.sample_layout2, userlist);
@@ -64,8 +64,7 @@ public class CustomAdapter2 extends ArrayAdapter<User> implements Filterable {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                /*String s = "Name: " + userlist.get(position).name;
+                String s = "Name: " + userlist.get(position).name;
                 String s1 = "Blood Group: " + userlist.get(position).blood;
                 String s2 = "District: " + userlist.get(position).district;
                 String s3 = "Number: +880" + userlist.get(position).phone;
@@ -75,7 +74,7 @@ public class CustomAdapter2 extends ArrayAdapter<User> implements Filterable {
 
                 ClipboardManager cm = (ClipboardManager) context
                         .getSystemService(Context.CLIPBOARD_SERVICE);
-                cm.setText(ss);*/
+                cm.setText(ss);
 
                 Intent intent= new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:"+"+880"+userlist.get(position).phone));
@@ -86,7 +85,8 @@ public class CustomAdapter2 extends ArrayAdapter<User> implements Filterable {
         view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                //parent.getChildAt(position).setBackgroundColor();
+                parent.getChildAt(pr).setBackgroundColor(Color.WHITE);
+                parent.getChildAt(position).setBackgroundColor(0xFFEFBBCD);
                 String s = "Name: " + userlist.get(position).name;
                 String s1 = "Blood Group: " + userlist.get(position).blood;
                 String s2 = "District: " + userlist.get(position).district;
@@ -99,6 +99,8 @@ public class CustomAdapter2 extends ArrayAdapter<User> implements Filterable {
                         .getSystemService(Context.CLIPBOARD_SERVICE);
                 cm.setText(ss);
                 Toast.makeText(context, "Information copied to clipboard", Toast.LENGTH_SHORT).show();
+                pr = position;
+                //parent.getChildAt(position).setBackgroundColor(Color.WHITE);
                 return false;
             }
         });
