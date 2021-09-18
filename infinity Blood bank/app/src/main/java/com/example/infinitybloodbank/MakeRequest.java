@@ -128,7 +128,7 @@ public class MakeRequest extends AppCompatActivity {
         String var = "Yes";
         String poster = userphn;
         System.out.println(poster);
-        Request req = new Request(full_name, phone_no, blood, loc, district, gen, Age, reas, var, poster);
+        Request req = new Request(full_name, phone_no, blood, loc, district, gen, Age, reas, var, poster, key);
         //ref.child(key).setValue(req);
         FirebaseDatabase.getInstance().getReference("allRequest").child(key).setValue(req);
         Toast.makeText(MakeRequest.this,"Request submitted.",Toast.LENGTH_LONG).show();

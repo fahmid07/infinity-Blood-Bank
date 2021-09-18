@@ -26,6 +26,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +69,9 @@ public class CustomAdapter3 extends ArrayAdapter<Request>{
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show();
+                //FirebaseDatabase.getInstance().getReference("allRequest").child(requestlist.get(position).key).child(requestlist.get(position).status).setValue("No");
+                FirebaseDatabase.getInstance().getReference("allRequest").child(requestlist.get(position).key).removeValue();
+                Toast.makeText(context, "Request Deleted", Toast.LENGTH_SHORT).show();
             }
         });
 
