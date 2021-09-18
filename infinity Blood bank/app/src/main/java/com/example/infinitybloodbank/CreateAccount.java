@@ -11,6 +11,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,6 +36,7 @@ public class CreateAccount extends AppCompatActivity {
     AutoCompleteTextView dst, bld;
     com.google.android.material.textfield.TextInputEditText phone, pass, name;
     private FirebaseAuth mAuth;
+    private ProgressBar progressBB;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBacks;
     String otpid;
 
@@ -49,6 +51,7 @@ public class CreateAccount extends AppCompatActivity {
         phone = findViewById(R.id.phonetxt);
         pass = findViewById(R.id.passwordtxt);
         name = findViewById(R.id.nametxt);
+        progressBB = findViewById(R.id.progressBar2);
         mAuth = FirebaseAuth.getInstance();
 
         String [] districts = {"Bandarban","Brahmanbaria",   "Chandpur", "Chittagong", "Comilla",    "Cox's Bazar","Feni",     "Khagrachhari","Lakshmipur", "Noakhali", "Rangamati", "Barguna",  "Barisal",        "Bhola",    "Jhalokati",  "Patuakhali", "Pirojpur", "Dhaka",    "Faridpur",       "Gazipur",  "Gopalganj",  "Kishoreganj","Madaripur",  "Manikganj","Munshiganj",  "Narayanganj","Narsingdi","Rajbari","Shariatpur","Tangail", "Bagerhat", "Chuadanga",      "Jessore",  "Jhenaidah",  "Khulna",     "Kushtia",    "Magura",   "Meherpur",    "Narail",     "Satkhira", "Jamalpur", "Mymensingh",     "Netrakona","Sherpur", "Bogra",    "Chapainawabganj","Joypurhat","Naogaon",    "Natore",     "Pabna",      "Rajshahi", "Sirajganj", "Dinajpur", "Gaibandha",      "Kurigram", "Lalmonirhat","Nilphamari", "Panchagarh", "Rangpur",  "Thakurgaon", "Habiganj", "Moulvibazar",    "Sunamganj","Sylhet"};
@@ -63,6 +66,7 @@ public class CreateAccount extends AppCompatActivity {
     }
 
     public void SubmitButtonClick(View v){
+        progressBB.setVisibility(View.VISIBLE);
         String phone_no = phone.getText().toString().trim();
         String password = pass.getText().toString().trim();
         String full_name = name.getText().toString().trim();
@@ -132,6 +136,8 @@ public class CreateAccount extends AppCompatActivity {
         i.putExtra("blood", blood);
         i.putExtra("district", district);*/
         //startActivity(i);
+
+        progressBB.setVisibility(View.GONE);
     }
 
 

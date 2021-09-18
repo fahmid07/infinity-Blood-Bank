@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ListView;
@@ -24,6 +25,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +48,7 @@ public class CustomAdapter1 extends ArrayAdapter<Request> implements Filterable 
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         LayoutInflater layoutInflater = context.getLayoutInflater();
         View view = layoutInflater.inflate(R.layout.sample_layout, null, true);
 
@@ -55,6 +59,8 @@ public class CustomAdapter1 extends ArrayAdapter<Request> implements Filterable 
         TextView t3 = view.findViewById(R.id.arreas);
         TextView t4 = view.findViewById(R.id.arnumber);
         TextView t5 = view.findViewById(R.id.ardetails);
+        Button bt1 = view.findViewById(R.id.call);
+        Button bt2 = view.findViewById(R.id.copy);
 
         t1.setText("Blood Group: " + request.bg);
         t2.setText("Location: "+request.location);
@@ -63,6 +69,34 @@ public class CustomAdapter1 extends ArrayAdapter<Request> implements Filterable 
         t5.setText("District: "+request.district  + "       Age: "+request.age + "      Gender: "+request.gender);
 
 
+        bt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"+"+880"+requestlist.get(position).phone));
+                context.startActivity(intent);
+            }
+        });
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = "Blood Group: " + requestlist.get(position).bg;
+                String s1 = "Location: " + requestlist.get(position).location + ", " + requestlist.get(position).district;
+                String s2 = "Reason: " + requestlist.get(position).reason;
+                String s3 = "Age: " + requestlist.get(position).age  + " (" + requestlist.get(position).gender+ ")";
+                String s4 = "Number: +880" + requestlist.get(position).phone + " (" + requestlist.get(position).name+ ")";
+                String s5 = "#infinty_Blood_bank";
+
+                String ss = s + System.lineSeparator() + s1 + System.lineSeparator() + s2 + System.lineSeparator() + s3 + System.lineSeparator() + s4 + System.lineSeparator() + System.lineSeparator() + s5;
+
+                ClipboardManager cm = (ClipboardManager) context
+                        .getSystemService(Context.CLIPBOARD_SERVICE);
+                cm.setText(ss);
+                Toast.makeText(context, "Information copied to clipboard", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        /*
         //view.setOnClickListener(mMyButtonClickListener);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,8 +125,9 @@ public class CustomAdapter1 extends ArrayAdapter<Request> implements Filterable 
         view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                //parent.getChildAt(pr).setBackgroundColor(Color.WHITE);
-                //parent.getChildAt(position).setBackgroundColor(0xFFEFBBCD);
+                System.out.println(position);
+                parent.getChildAt(pr%4).setBackgroundColor(Color.WHITE);
+                parent.getChildAt(position%4).setBackgroundColor(0xFFEFBBCD);
                 String s = "Blood Group: " + requestlist.get(position).bg;
                 String s1 = "Location: " + requestlist.get(position).location + ", " + requestlist.get(position).district;
                 String s2 = "Reason: " + requestlist.get(position).reason;
@@ -111,6 +146,14 @@ public class CustomAdapter1 extends ArrayAdapter<Request> implements Filterable 
                 return false;
             }
         });
+        view.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                System.out.println(scrollX);
+                System.out.println(scrollY);
+                System.out.println("hello");
+            }
+        }); */
         return view;
     }
 

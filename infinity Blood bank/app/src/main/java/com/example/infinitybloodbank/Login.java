@@ -122,6 +122,7 @@ public class Login extends AppCompatActivity {
                                 @Override
                                 public void onFailure(@NonNull  Exception e) {
                                     Toast.makeText(Login.this, e.toString(), Toast.LENGTH_LONG).show();
+                                    progressB.setVisibility(View.GONE);
                                 }
                             })
                             .addOnSuccessListener(new OnSuccessListener<AuthResult>() {

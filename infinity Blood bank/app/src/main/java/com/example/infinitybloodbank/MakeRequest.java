@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +25,7 @@ public class MakeRequest extends AppCompatActivity {
     com.google.android.material.textfield.TextInputEditText phone, name, location, age, reason;
     private FirebaseAuth mAuth;
     DatabaseReference ref;
+
     String userphn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class MakeRequest extends AppCompatActivity {
         location = findViewById(R.id.locationtxt);
         age = findViewById(R.id.agetxt);
         reason = findViewById(R.id.reasontxt);
+
         mAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference("allRequest");
 
@@ -62,6 +65,7 @@ public class MakeRequest extends AppCompatActivity {
     }
 
     public void SubmitButtonClick(View v){
+
         String phone_no = phone.getText().toString().trim();
         String full_name = name.getText().toString().trim();
         String blood = bld.getText().toString().trim();
@@ -140,6 +144,7 @@ public class MakeRequest extends AppCompatActivity {
         i.putExtra("name", full_name);
         i.putExtra("blood", blood);
         i.putExtra("district", district);*/
+
         startActivity(i);
     }
 }

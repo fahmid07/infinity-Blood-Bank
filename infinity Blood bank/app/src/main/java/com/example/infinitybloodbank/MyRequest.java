@@ -12,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +29,7 @@ public class MyRequest extends AppCompatActivity{
     DatabaseReference ref;
     private List<Request> reqlist;
     private CustomAdapter3 customAdapter3;
+    FirebaseUser currentUser;
     String phone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,11 @@ public class MyRequest extends AppCompatActivity{
         ref = FirebaseDatabase.getInstance().getReference("allRequest");
         reqlist = new ArrayList<>();
         customAdapter3 = new CustomAdapter3(MyRequest.this, reqlist);
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+
+        String nm = currentUser.getEmail();
+        phone = nm.substring(0, 10);
 
 
         listview = findViewById(R.id.llistviewId1);
@@ -52,6 +60,9 @@ public class MyRequest extends AppCompatActivity{
             @Override
             public void onDataChange(@NonNull  DataSnapshot snapshot) {
                 reqlist.clear();
+                currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                String nm = currentUser.getEmail();
+                phone = nm.substring(0, 10);
                 for(DataSnapshot dns:snapshot.getChildren()){
                     Request req = dns.getValue(Request.class);
 
