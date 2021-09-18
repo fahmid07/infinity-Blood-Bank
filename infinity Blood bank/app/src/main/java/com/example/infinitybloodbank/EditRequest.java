@@ -9,29 +9,29 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class MakeRequest extends AppCompatActivity {
+public class EditRequest extends AppCompatActivity {
 
     AutoCompleteTextView dst, bld, gndr;
     com.google.android.material.textfield.TextInputEditText phone, name, location, age, reason;
     private FirebaseAuth mAuth;
     DatabaseReference ref;
 
-    String userphn;
+    String userphn, uid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_make_request);
+        setContentView(R.layout.activity_edit_request);
 
         dst = findViewById(R.id.districttxt);
         bld = findViewById(R.id.bloodtxt);
@@ -43,11 +43,31 @@ public class MakeRequest extends AppCompatActivity {
         age = findViewById(R.id.agetxt);
         reason = findViewById(R.id.reasontxt);
 
+        Intent i = getIntent();
+        uid = i.getStringExtra("uid");
+
+        FirebaseDatabase.getInstance().getReference("allRequest").child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                phone.setText(snapshot.child("phone").getValue().toString());
+                name.setText(snapshot.child("name").getValue().toString());
+                location.setText(snapshot.child("location").getValue().toString());
+                age.setText(snapshot.child("age").getValue().toString());
+                reason.setText(snapshot.child("reason").getValue().toString());
+                dst.setText(snapshot.child("district").getValue().toString(), false);
+                bld.setText(snapshot.child("bg").getValue().toString(), false);
+                gndr.setText(snapshot.child("gender").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         mAuth = FirebaseAuth.getInstance();
         ref = FirebaseDatabase.getInstance().getReference("allRequest");
 
-        Intent i = getIntent();
-        userphn = i.getStringExtra("phone");
 
         String [] districts = {"Bandarban","Brahmanbaria",   "Chandpur", "Chittagong", "Comilla",    "Cox's Bazar","Feni",     "Khagrachhari","Lakshmipur", "Noakhali", "Rangamati", "Barguna",  "Barisal",        "Bhola",    "Jhalokati",  "Patuakhali", "Pirojpur", "Dhaka",    "Faridpur",       "Gazipur",  "Gopalganj",  "Kishoreganj","Madaripur",  "Manikganj","Munshiganj",  "Narayanganj","Narsingdi","Rajbari","Shariatpur","Tangail", "Bagerhat", "Chuadanga",      "Jessore",  "Jhenaidah",  "Khulna",     "Kushtia",    "Magura",   "Meherpur",    "Narail",     "Satkhira", "Jamalpur", "Mymensingh",     "Netrakona","Sherpur", "Bogra",    "Chapainawabganj","Joypurhat","Naogaon",    "Natore",     "Pabna",      "Rajshahi", "Sirajganj", "Dinajpur", "Gaibandha",      "Kurigram", "Lalmonirhat","Nilphamari", "Panchagarh", "Rangpur",  "Thakurgaon", "Habiganj", "Moulvibazar",    "Sunamganj","Sylhet"};
         ArrayAdapter dstr = new ArrayAdapter(this, R.layout.district_item, districts);
@@ -129,7 +149,7 @@ public class MakeRequest extends AppCompatActivity {
             return;
         }
         System.out.println("here 1");
-        String key = ref.push().getKey();
+        String key = uid;
         String var = "Yes";
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String nm = currentUser.getEmail();
@@ -139,16 +159,15 @@ public class MakeRequest extends AppCompatActivity {
         Request req = new Request(full_name, phone_no, blood, loc, district, gen, Age, reas, var, poster, key);
         //ref.child(key).setValue(req);
         FirebaseDatabase.getInstance().getReference("allRequest").child(key).setValue(req);
-        Toast.makeText(MakeRequest.this,"Request submitted.",Toast.LENGTH_LONG).show();
+        Toast.makeText(EditRequest.this,"Request updated.",Toast.LENGTH_LONG).show();
 
 
-        Intent i = new Intent(MakeRequest.this , dashboard.class);
-        i.putExtra("phone", userphn);
+        Intent i = new Intent(EditRequest.this , MyRequest.class);
         /*i.putExtra("pass", password);
         i.putExtra("name", full_name);
         i.putExtra("blood", blood);
         i.putExtra("district", district);*/
-
+        this.finish();
         startActivity(i);
     }
 }

@@ -63,15 +63,36 @@
 
     </TextView>
 
-    <Button
-        android:id="@+id/del"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="393dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
-        android:background="#DF1D26"
-        android:text="Delete"
-        android:textColor="#FFFFFF" />
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/up"
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="#DF1D26"
+            android:text="Update"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/del"
+            android:layout_width="166dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="#DF1D26"
+            android:text="Delete"
+            android:textColor="#FFFFFF" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

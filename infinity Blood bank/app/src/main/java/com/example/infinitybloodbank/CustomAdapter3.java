@@ -26,7 +26,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +61,7 @@ public class CustomAdapter3 extends ArrayAdapter<Request>{
         TextView t4 = view.findViewById(R.id.mrnumber);
         TextView t5 = view.findViewById(R.id.mrdetails);
         Button bt = view.findViewById(R.id.del);
+        Button bt2 = view.findViewById(R.id.up);
 
         t1.setText("Blood Group: " + request.bg);
         t2.setText("Location: "+request.location);
@@ -70,8 +74,32 @@ public class CustomAdapter3 extends ArrayAdapter<Request>{
             @Override
             public void onClick(View v) {
                 //FirebaseDatabase.getInstance().getReference("allRequest").child(requestlist.get(position).key).child(requestlist.get(position).status).setValue("No");
+
                 FirebaseDatabase.getInstance().getReference("allRequest").child(requestlist.get(position).key).removeValue();
                 Toast.makeText(context, "Request Deleted", Toast.LENGTH_SHORT).show();
+            }
+        });
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //FirebaseDatabase.getInstance().getReference("allRequest").child(requestlist.get(position).key).child(requestlist.get(position).status).setValue("No");
+                /*FirebaseDatabase.getInstance().getReference("allRequest").child(requestlist.get(position).key).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        snapshot.child("")
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                Toast.makeText(context, "Request Deleted", Toast.LENGTH_SHORT).show();*/
+                String uid = requestlist.get(position).key;
+                Intent i = new Intent(context, EditRequest.class);
+                i.putExtra("uid", uid);
+                context.finish();
+                context.startActivity(i);
             }
         });
 

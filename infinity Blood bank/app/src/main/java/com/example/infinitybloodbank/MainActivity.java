@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 pairs[1] = new Pair<View, String>(slogan, "logo_text");
 
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MainActivity.this, pairs);
+                MainActivity.this.finish();
                 startActivity(intent, options.toBundle());
             }
         }, SPLASH_SCREEN);

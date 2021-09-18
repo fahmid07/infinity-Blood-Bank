@@ -122,6 +122,7 @@ public class CreateAccount extends AppCompatActivity {
                             finish();
                             Intent i = new Intent(CreateAccount.this, dashboard.class);
                             i.putExtra("phone", phone_no);
+                            CreateAccount.this.finish();
                             startActivity(i);
                         }else{
                             Toast.makeText(CreateAccount.this,"Registration Error",Toast.LENGTH_LONG).show();
