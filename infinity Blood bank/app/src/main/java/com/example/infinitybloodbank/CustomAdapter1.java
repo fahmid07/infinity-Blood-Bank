@@ -91,8 +91,8 @@ public class CustomAdapter1 extends ArrayAdapter<Request> implements Filterable 
         view.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                parent.getChildAt(pr).setBackgroundColor(Color.WHITE);
-                parent.getChildAt(position).setBackgroundColor(0xFFEFBBCD);
+                //parent.getChildAt(pr).setBackgroundColor(Color.WHITE);
+                //parent.getChildAt(position).setBackgroundColor(0xFFEFBBCD);
                 String s = "Blood Group: " + requestlist.get(position).bg;
                 String s1 = "Location: " + requestlist.get(position).location + ", " + requestlist.get(position).district;
                 String s2 = "Reason: " + requestlist.get(position).reason;
@@ -133,7 +133,16 @@ public class CustomAdapter1 extends ArrayAdapter<Request> implements Filterable 
                             String t3 = g.bg + ", " + g.district;
                             String t4 = g.bg + "," + g.district;
                             String t5 = g.bg + " " + g.district;
-                            String t6 = g.district + " " + g.bg;
+                            String t6 = g.district + " " + g.bg + " ";
+                            String t11 = g.district + ", " + g.bg+ " ";
+                            String t21 = g.district + "," + g.bg+ " ";
+                            String t31 = g.bg + ", " + g.district+ " ";
+                            String t41 = g.bg + "," + g.district+ " ";
+                            String t51 = g.bg + " " + g.district+ " ";
+                            String t61 = g.district + " " + g.bg+ " ";
+                            String t22 = g.district + " ";
+                            String t32 = g.bg + " ";
+
                             if (g.district
                                     .contains(constraint.toString()))
                                 results.add(g);
@@ -157,6 +166,30 @@ public class CustomAdapter1 extends ArrayAdapter<Request> implements Filterable 
                                     .contains(constraint.toString()))
                                 results.add(g);
                             else if (t6
+                                    .contains(constraint.toString()))
+                                results.add(g);
+                            else if (t11
+                                    .contains(constraint.toString()))
+                                results.add(g);
+                            else if (t21
+                                    .contains(constraint.toString()))
+                                results.add(g);
+                            else if (t31
+                                    .contains(constraint.toString()))
+                                results.add(g);
+                            else if (t41
+                                    .contains(constraint.toString()))
+                                results.add(g);
+                            else if (t51
+                                    .contains(constraint.toString()))
+                                results.add(g);
+                            else if (t61
+                                    .contains(constraint.toString()))
+                                results.add(g);
+                            else if (t22
+                                    .contains(constraint.toString()))
+                                results.add(g);
+                            else if (t32
                                     .contains(constraint.toString()))
                                 results.add(g);
                         }

@@ -2,10 +2,9 @@ package com.example.infinitybloodbank;
 
 public class Request {
 
-    public String name, phone, bg, location, district, gender, age, reason, from;
-    int status;
+    public String name, phone, bg, location, district, gender, age, reason, from, status;
 
-    public Request(String name, String phone, String bg, String location, String district, String gender, String age, String reason, int status, String from) {
+    public Request(String name, String phone, String bg, String location, String district, String gender, String age, String reason, String status, String from) {
         this.name = name;
         this.phone = phone;
         this.bg = bg;

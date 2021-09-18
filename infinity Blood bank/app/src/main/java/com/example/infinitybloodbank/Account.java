@@ -12,7 +12,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Account extends AppCompatActivity {
 
     TextView t1, t2;
-    String name, phone;
+    String name;
+    static String phone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +30,9 @@ public class Account extends AppCompatActivity {
         t2.setText("+880" + phone);
     }
 
+    public static String getPhone(){
+        return phone;
+    }
     public void EditButtonClick(View v){
         Intent i = new Intent(this, all_user.class);
         startActivity(i);
@@ -36,7 +40,8 @@ public class Account extends AppCompatActivity {
 
 
     public void YreqButtonClick(View v){
-        Intent i = new Intent(this, AllRequest.class);
+        Intent i = new Intent(this, MyRequest.class);
+        i.putExtra("phone", phone);
         startActivity(i);
     }
 

@@ -92,7 +92,8 @@ public class phoneotp extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     System.out.println("hi 2");
-                    User user = new User(phone, name, pass, district, blood);
+                    String nn = "Yes";
+                    User user = new User(phone, name, pass, district, blood, nn);
                     FirebaseDatabase.getInstance().getReference("Users").child(phone).setValue(user);
                     Intent mainIntent = new Intent(phoneotp.this , dashboard.class);
                     startActivity(mainIntent);

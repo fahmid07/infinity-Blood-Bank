@@ -93,7 +93,7 @@ public class all_user extends AppCompatActivity implements SearchView.OnQueryTex
                 for(DataSnapshot dns:snapshot.getChildren()){
                     User req = dns.getValue(User.class);
 
-                    uslist.add(req);
+                    if(req.active.equals("Yes")) uslist.add(req);
                 }
                 listview1.setAdapter(customAdapter2);
 

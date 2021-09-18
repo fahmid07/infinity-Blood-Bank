@@ -105,7 +105,8 @@ public class CreateAccount extends AppCompatActivity {
             return;
         }
 
-        User user = new User(phone_no, full_name, password, district, blood);
+        String ac = "Yes";
+        User user = new User(phone_no, full_name, password, district, blood, ac);
         FirebaseDatabase.getInstance().getReference("Users").child(phone_no).setValue(user);
 
         mAuth.createUserWithEmailAndPassword(phone_no+"@gmail.com", password)

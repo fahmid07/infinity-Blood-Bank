@@ -93,7 +93,7 @@ public class AllRequest extends AppCompatActivity implements SearchView.OnQueryT
                 for(DataSnapshot dns:snapshot.getChildren()){
                     Request req = dns.getValue(Request.class);
 
-                    reqlist.add(req);
+                    if(req.status.equals("Yes")) reqlist.add(req);
                 }
                 listview.setAdapter(customAdapter1);
 

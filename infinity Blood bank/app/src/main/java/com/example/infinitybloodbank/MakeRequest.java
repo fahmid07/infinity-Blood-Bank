@@ -125,7 +125,7 @@ public class MakeRequest extends AppCompatActivity {
         }
         System.out.println("here 1");
         String key = ref.push().getKey();
-        int var = 1;
+        String var = "Yes";
         String poster = userphn;
         System.out.println(poster);
         Request req = new Request(full_name, phone_no, blood, loc, district, gen, Age, reas, var, poster);
