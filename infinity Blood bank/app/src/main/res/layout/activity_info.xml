@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Info"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:background="#ffffff">
+
+    <ImageView
+        android:id="@+id/logo_Image"
+        android:layout_width="190dp"
+        android:layout_height="106dp"
+        android:src="@drawable/logo1"
+        android:layout_gravity="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/blood"
+            app:startIconDrawable="@drawable/blood"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="0dp" >
+
+            <AutoCompleteTextView
+                android:id="@+id/bloodtxt"
+                android:inputType="none"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Blood Group"
+                android:textColor="#000000" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/logo_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tauri"
+            android:text="Can give blood to:"
+            android:transitionName="logo_text"
+            android:textColor="@color/mycolor"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tauri"
+            android:text="Select  Blood Group"
+            android:transitionName="logo_text"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/logo_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tauri"
+            android:text="Can receive blood from:"
+            android:transitionName="logo_text"
+            android:textColor="@color/mycolor"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tauri"
+            android:text="Select Blood Group"
+            android:transitionName="logo_text"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/logo_text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tauri"
+            android:text="Best Donations For Type:"
+            android:transitionName="logo_text"
+            android:textColor="@color/mycolor"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tauri"
+            android:text="Select Blood Group"
+            android:transitionName="logo_text"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/text4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You can donate whole blood every 56 days. The best thing about being a platelet donor? You can do it every 7 days!"
+            android:transitionName="logo_text"
+            android:textColor="#606060"
+            android:textSize="16dp"
+            android:layout_marginTop="15dp"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/logo_Image1"
+        android:layout_width="355dp"
+        android:layout_height="198dp"
+        android:layout_gravity="center"
+        android:src="@drawable/all1" />
+
+    <TextView
+        android:layout_gravity="center"
+        android:id="@+id/text5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What if you don't know your blood type?"
+        android:transitionName="logo_text"
+        android:textColor="#606060"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Donating blood is a great way to find out your blood type!"
+        android:transitionName="logo_text"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        android:layout_marginTop="5dp"/>
+
+</LinearLayout>

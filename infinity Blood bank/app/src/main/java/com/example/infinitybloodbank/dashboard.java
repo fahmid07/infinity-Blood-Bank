@@ -52,10 +52,14 @@ public class dashboard extends AppCompatActivity {
     }
 
     public void AccountButtonClick(View v){
-
         Intent i = new Intent(dashboard.this , Account.class);
         i.putExtra("phone", phnkey);
         i.putExtra("name", nmkey);
+        startActivity(i);
+    }
+
+    public void InfoButtonClick(View v){
+        Intent i = new Intent(dashboard.this , Info.class);
         startActivity(i);
     }
 }
