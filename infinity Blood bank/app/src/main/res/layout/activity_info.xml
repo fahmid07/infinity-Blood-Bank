@@ -134,7 +134,7 @@
         android:layout_height="wrap_content"
         android:text="What if you don't know your blood type?"
         android:transitionName="logo_text"
-        android:textColor="#606060"
+        android:textColor="@color/mycolor"
         android:textSize="16dp"
         android:layout_marginTop="10dp"/>
 
