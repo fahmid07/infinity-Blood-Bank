@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -23,6 +25,7 @@ import java.util.List;
 
 public class all_user extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
+    AutoCompleteTextView dst, bld;
     private ListView listview1;
     private SearchView searchView1;
     DatabaseReference ref;
@@ -39,6 +42,49 @@ public class all_user extends AppCompatActivity implements SearchView.OnQueryTex
 
         listview1 = findViewById(R.id.llistviewId1);
         searchView1 = findViewById(R.id.search_bar);
+        dst = findViewById(R.id.districttxt);
+        bld = findViewById(R.id.bloodtxt);
+
+        String [] districts = {"All", "Bandarban","Brahmanbaria",   "Chandpur", "Chittagong", "Comilla",    "Cox's Bazar","Feni",     "Khagrachhari","Lakshmipur", "Noakhali", "Rangamati", "Barguna",  "Barisal",        "Bhola",    "Jhalokati",  "Patuakhali", "Pirojpur", "Dhaka",    "Faridpur",       "Gazipur",  "Gopalganj",  "Kishoreganj","Madaripur",  "Manikganj","Munshiganj",  "Narayanganj","Narsingdi","Rajbari","Shariatpur","Tangail", "Bagerhat", "Chuadanga",      "Jessore",  "Jhenaidah",  "Khulna",     "Kushtia",    "Magura",   "Meherpur",    "Narail",     "Satkhira", "Jamalpur", "Mymensingh",     "Netrakona","Sherpur", "Bogra",    "Chapainawabganj","Joypurhat","Naogaon",    "Natore",     "Pabna",      "Rajshahi", "Sirajganj", "Dinajpur", "Gaibandha",      "Kurigram", "Lalmonirhat","Nilphamari", "Panchagarh", "Rangpur",  "Thakurgaon", "Habiganj", "Moulvibazar",    "Sunamganj","Sylhet"};
+        ArrayAdapter dstr = new ArrayAdapter(this, R.layout.district_item, districts);
+        //dst.setText(dstr.getItem(0).toString(), false);
+        dst.setAdapter(dstr);
+
+        String [] bloods = {"All", "B+", "B-", "A+", "A-", "O+", "O-", "AB+", "AB-"};
+        ArrayAdapter bldg = new ArrayAdapter(this, R.layout.district_item, bloods);
+        //bld.setText(bldg.getItem(0).toString(), false);
+        bld.setAdapter(bldg);
+
+        bld.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String one = bld.getText().toString();
+                String two = dst.getText().toString();
+                if(one.equals("All")) one = "";
+                if(two.equals("All")) two = "";
+
+                if(one.equals("Blood")) one = "";
+                if(two.equals("District")) two = "";
+                searchView1.setQuery(two + " " + one,  false);
+                searchView1.clearFocus();
+            }
+        });
+
+        dst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String one = bld.getText().toString();
+                String two = dst.getText().toString();
+                if(one.equals("All")) one = "";
+                if(two.equals("All")) two = "";
+
+                if(one.equals("Bg")) one = "";
+                if(two.equals("District")) two = "";
+                searchView1.setQuery(two + " " + one, false);
+                searchView1.clearFocus();
+            }
+        });
+
         setupSearchView();
 
         searchView1.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
