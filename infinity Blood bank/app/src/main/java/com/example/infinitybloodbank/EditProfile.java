@@ -17,37 +17,31 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class MakeRequest extends AppCompatActivity {
+public class EditProfile extends AppCompatActivity {
 
-    AutoCompleteTextView dst, bld, gndr;
-    com.google.android.material.textfield.TextInputEditText phone, name, location, age, reason;
+    AutoCompleteTextView dst, bld, avyn;
+    com.google.android.material.textfield.TextInputEditText phone, pass, name;
     private FirebaseAuth mAuth;
-    DatabaseReference ref;
-
-    String userphn;
+    private ProgressBar progressBB;
+    String phone_no;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_make_request);
+        setContentView(R.layout.activity_edit_profile);
 
         dst = findViewById(R.id.districttxt);
         bld = findViewById(R.id.bloodtxt);
-        gndr = findViewById(R.id.gendertxt);
+        avyn = findViewById(R.id.avlbld);
 
-        phone = findViewById(R.id.phonetxt);
+        pass = findViewById(R.id.passwordtxt);
         name = findViewById(R.id.nametxt);
-        location = findViewById(R.id.locationtxt);
-        age = findViewById(R.id.agetxt);
-        reason = findViewById(R.id.reasontxt);
-
+        progressBB = findViewById(R.id.progressBar2);
         mAuth = FirebaseAuth.getInstance();
-        ref = FirebaseDatabase.getInstance().getReference("allRequest");
-
-        Intent i = getIntent();
-        userphn = i.getStringExtra("phone");
 
         String [] districts = {"Bandarban","Brahmanbaria",   "Chandpur", "Chittagong", "Comilla",    "Cox's Bazar","Feni",     "Khagrachhari","Lakshmipur", "Noakhali", "Rangamati", "Barguna",  "Barisal",        "Bhola",    "Jhalokati",  "Patuakhali", "Pirojpur", "Dhaka",    "Faridpur",       "Gazipur",  "Gopalganj",  "Kishoreganj","Madaripur",  "Manikganj","Munshiganj",  "Narayanganj","Narsingdi","Rajbari","Shariatpur","Tangail", "Bagerhat", "Chuadanga",      "Jessore",  "Jhenaidah",  "Khulna",     "Kushtia",    "Magura",   "Meherpur",    "Narail",     "Satkhira", "Jamalpur", "Mymensingh",     "Netrakona","Sherpur", "Bogra",    "Chapainawabganj","Joypurhat","Naogaon",    "Natore",     "Pabna",      "Rajshahi", "Sirajganj", "Dinajpur", "Gaibandha",      "Kurigram", "Lalmonirhat","Nilphamari", "Panchagarh", "Rangpur",  "Thakurgaon", "Habiganj", "Moulvibazar",    "Sunamganj","Sylhet"};
         ArrayAdapter dstr = new ArrayAdapter(this, R.layout.district_item, districts);
@@ -59,32 +53,48 @@ public class MakeRequest extends AppCompatActivity {
         //bld.setText(bldg.getItem(0).toString(), false);
         bld.setAdapter(bldg);
 
-        String [] ages = { "Male", "Female", "Others"};
-        ArrayAdapter ag = new ArrayAdapter(this, R.layout.district_item, ages);
+        String [] yn = {"Yes", "No"};
+        ArrayAdapter yna = new ArrayAdapter(this, R.layout.district_item, yn);
         //bld.setText(bldg.getItem(0).toString(), false);
-        gndr.setAdapter(ag);
+        avyn.setAdapter(yna);
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+
+        String nm = currentUser.getEmail();
+        String phn = nm.substring(0, 10);
+        phone_no = phn;
+
+
+        FirebaseDatabase.getInstance().getReference("Users").child(phn).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                name.setText(snapshot.child("name").getValue().toString());
+                dst.setText(snapshot.child("district").getValue().toString(), false);
+                bld.setText(snapshot.child("blood").getValue().toString(), false);
+                avyn.setText(snapshot.child("active").getValue().toString(),false);
+                pass.setText(snapshot.child("pass").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void SubmitButtonClick(View v){
-
-        String phone_no = phone.getText().toString().trim();
+        progressBB.setVisibility(View.VISIBLE);
+        String password = pass.getText().toString().trim();
         String full_name = name.getText().toString().trim();
         String blood = bld.getText().toString().trim();
         String district = dst.getText().toString().trim();
-        String gen = gndr.getText().toString().trim();
-        String Age = age.getText().toString().trim();
-        String loc = location.getText().toString().trim();
-        String reas = reason.getText().toString().trim();
+        String available = avyn.getText().toString().trim();
 
-        if(phone_no.isEmpty() || phone_no.length()!=10){
-            phone.setError("Enter a phone number");
-            phone.requestFocus();
-            return;
-        }
 
-        if(!Patterns.PHONE.matcher(phone_no).matches()){
-            phone.setError("Enter a valid phone number");
-            phone.requestFocus();
+        if(password.isEmpty()) {
+            pass.setError("Enter a password");
+            pass.requestFocus();
             return;
         }
 
@@ -105,51 +115,28 @@ public class MakeRequest extends AppCompatActivity {
             dst.requestFocus();
             return;
         }
-        if(gen.equals("Select Gender")) {
-            gndr.setError("Select Gender");
-            gndr.requestFocus();
+
+        if(!(available.equals("Yes") || available.equals("No"))) {
+            avyn.setError("Yes or No");
+            avyn.requestFocus();
             return;
         }
 
-        if(reas.isEmpty()) {
-            reason.setError("What Reason?");
-            reason.requestFocus();
-            return;
-        }
-
-        if(loc.isEmpty()) {
-            location.setError("Enter your location");
-            location.requestFocus();
-            return;
-        }
-
-        if(Age.isEmpty()) {
-            age.setError("Enter patients age");
-            age.requestFocus();
-            return;
-        }
-        System.out.println("here 1");
-        String key = ref.push().getKey();
-        String var = "Yes";
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        String nm = currentUser.getEmail();
-        String userphn = nm.substring(0, 10);
-        String poster = userphn;
-        System.out.println(poster);
-        int clicked = 0;
-        Request req = new Request(full_name, phone_no, blood, loc, district, gen, Age, reas, var, poster, key, clicked);
-        //ref.child(key).setValue(req);
-        FirebaseDatabase.getInstance().getReference("allRequest").child(key).setValue(req);
-        Toast.makeText(MakeRequest.this,"Request submitted.",Toast.LENGTH_LONG).show();
+        User user = new User(phone_no, full_name, password, district, blood, available);
+        FirebaseDatabase.getInstance().getReference("Users").child(phone_no).setValue(user);
 
 
-        Intent i = new Intent(MakeRequest.this , dashboard.class);
-        i.putExtra("phone", userphn);
+        progressBB.setVisibility(View.GONE);
+
+        Toast.makeText(EditProfile.this,"Account updated.",Toast.LENGTH_LONG).show();
+
+
+        Intent i = new Intent(EditProfile.this , Account.class);
         /*i.putExtra("pass", password);
         i.putExtra("name", full_name);
         i.putExtra("blood", blood);
         i.putExtra("district", district);*/
-
+        this.finish();
         startActivity(i);
     }
 }

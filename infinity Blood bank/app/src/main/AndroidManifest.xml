@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.InfinityBloodBank">
-        <activity android:name=".EditRequest"></activity>
+        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".EditRequest" />
         <activity android:name=".MyRequest" />
         <activity android:name=".Account" />
         <activity android:name=".all_user" />

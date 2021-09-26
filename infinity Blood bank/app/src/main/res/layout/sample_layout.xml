@@ -73,7 +73,7 @@
 
         <Button
             android:id="@+id/call"
-            android:layout_width="140dp"
+            android:layout_width="171dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
@@ -84,12 +84,12 @@
 
         <Button
             android:id="@+id/copy"
-            android:layout_width="223dp"
+            android:layout_width="188dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:background="#DF1D26"
-            android:text="Copy to clipboard"
+            android:text="Share"
             android:textColor="#FFFFFF" />
 
     </LinearLayout>

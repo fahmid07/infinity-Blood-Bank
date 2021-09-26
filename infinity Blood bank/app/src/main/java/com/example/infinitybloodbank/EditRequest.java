@@ -25,7 +25,7 @@ public class EditRequest extends AppCompatActivity {
     com.google.android.material.textfield.TextInputEditText phone, name, location, age, reason;
     private FirebaseAuth mAuth;
     DatabaseReference ref;
-
+    public int clicked;
     String userphn, uid;
 
     @Override
@@ -56,7 +56,8 @@ public class EditRequest extends AppCompatActivity {
                 reason.setText(snapshot.child("reason").getValue().toString());
                 dst.setText(snapshot.child("district").getValue().toString(), false);
                 bld.setText(snapshot.child("bg").getValue().toString(), false);
-                gndr.setText(snapshot.child("gender").getValue().toString());
+                gndr.setText(snapshot.child("gender").getValue().toString(), false);
+                clicked = (int) snapshot.child("clicked").getValue();
             }
 
             @Override
@@ -156,7 +157,7 @@ public class EditRequest extends AppCompatActivity {
         String userphn = nm.substring(0, 10);
         String poster = userphn;
         System.out.println(poster);
-        Request req = new Request(full_name, phone_no, blood, loc, district, gen, Age, reas, var, poster, key);
+        Request req = new Request(full_name, phone_no, blood, loc, district, gen, Age, reas, var, poster, key, clicked);
         //ref.child(key).setValue(req);
         FirebaseDatabase.getInstance().getReference("allRequest").child(key).setValue(req);
         Toast.makeText(EditRequest.this,"Request updated.",Toast.LENGTH_LONG).show();

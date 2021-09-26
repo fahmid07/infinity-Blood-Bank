@@ -63,7 +63,7 @@ public class CustomAdapter3 extends ArrayAdapter<Request>{
         Button bt = view.findViewById(R.id.del);
         Button bt2 = view.findViewById(R.id.up);
 
-        t1.setText("Blood Group: " + request.bg);
+        t1.setText("Blood Group: " + request.bg + "            Clicked: " + String.valueOf(request.clicked));
         t2.setText("Location: "+request.location);
         t3.setText("Reason: "+request.reason);
         t4.setText("Number: +880"+request.phone + " (" + request.name + ")");

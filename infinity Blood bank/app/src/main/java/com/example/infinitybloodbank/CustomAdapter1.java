@@ -72,6 +72,12 @@ public class CustomAdapter1 extends ArrayAdapter<Request> implements Filterable 
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int clk = (int) requestlist.get(position).clicked;
+                clk++;
+
+                Request req = new Request(requestlist.get(position).name, requestlist.get(position).phone, requestlist.get(position).bg, requestlist.get(position).location, requestlist.get(position).district, requestlist.get(position).gender, requestlist.get(position).age, requestlist.get(position).reason, requestlist.get(position).status, requestlist.get(position).from, requestlist.get(position).key, clk);
+                FirebaseDatabase.getInstance().getReference("allRequest").child(requestlist.get(position).key).setValue(req);
+
                 Intent intent= new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:"+"+880"+requestlist.get(position).phone));
                 context.startActivity(intent);
@@ -80,6 +86,13 @@ public class CustomAdapter1 extends ArrayAdapter<Request> implements Filterable 
         bt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                int clk = (int) requestlist.get(position).clicked;
+                clk++;
+
+                Request req = new Request(requestlist.get(position).name, requestlist.get(position).phone, requestlist.get(position).bg, requestlist.get(position).location, requestlist.get(position).district, requestlist.get(position).gender, requestlist.get(position).age, requestlist.get(position).reason, requestlist.get(position).status, requestlist.get(position).from, requestlist.get(position).key, clk);
+                FirebaseDatabase.getInstance().getReference("allRequest").child(requestlist.get(position).key).setValue(req);
+
                 String s = "Blood Group: " + requestlist.get(position).bg;
                 String s1 = "Location: " + requestlist.get(position).location + ", " + requestlist.get(position).district;
                 String s2 = "Reason: " + requestlist.get(position).reason;
@@ -93,6 +106,14 @@ public class CustomAdapter1 extends ArrayAdapter<Request> implements Filterable 
                         .getSystemService(Context.CLIPBOARD_SERVICE);
                 cm.setText(ss);
                 Toast.makeText(context, "Information copied to clipboard", Toast.LENGTH_SHORT).show();
+
+                Intent intent= new Intent(Intent.ACTION_SEND);
+                intent.setType("Text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, ss);
+                //context.startActivity(intent);*/
+
+                Intent chooser = Intent.createChooser(intent, ss);
+                context.startActivity(chooser);
             }
         });
 

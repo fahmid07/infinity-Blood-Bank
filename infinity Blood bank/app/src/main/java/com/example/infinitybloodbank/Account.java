@@ -59,7 +59,7 @@ public class Account extends AppCompatActivity {
         return phone;
     }
     public void EditButtonClick(View v){
-        Intent i = new Intent(this, all_user.class);
+        Intent i = new Intent(this, EditProfile.class);
         startActivity(i);
     }
 
