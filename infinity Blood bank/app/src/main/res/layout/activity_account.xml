@@ -26,7 +26,8 @@
         android:fontFamily="@font/tauri"
         android:text="Your Acount"
         android:textColor="@color/mycolor"
-        android:textSize="32sp" />
+        android:textSize="32sp"
+        android:layout_marginTop="20dp"/>
 
     <TextView
         android:id="@+id/logo_text4"
@@ -37,11 +38,38 @@
         android:textColor="@color/black"
         android:textSize="24sp" />
 
+    <TextView
+        android:id="@+id/logo_text7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tauri"
+        android:text="Blood group: "
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/logo_text5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tauri"
+        android:text="Available to donate: "
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/logo_text6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tauri"
+        android:text="District: "
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="20dp"
         android:orientation="vertical">
 

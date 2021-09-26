@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Account extends AppCompatActivity {
 
-    TextView t1, t2;
+    TextView t1, t2, t5, t6, t7;
     String name;
     static String phone;
     FirebaseUser currentUser;
@@ -30,6 +30,9 @@ public class Account extends AppCompatActivity {
 
         t1 = findViewById(R.id.logo_text3);
         t2 = findViewById(R.id.logo_text4);
+        t5 = findViewById(R.id.logo_text5);
+        t6 = findViewById(R.id.logo_text6);
+        t7 = findViewById(R.id.logo_text7);
         Intent i = getIntent();
         phone = i.getStringExtra("phone");
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -43,6 +46,9 @@ public class Account extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                     name = dataSnapshot.child("name").getValue().toString();
                     t1.setText(name);
+                    t5.setText("Available to donate: " + dataSnapshot.child("active").getValue().toString());
+                    t6.setText("District: " + dataSnapshot.child("district").getValue().toString());
+                    t7.setText("Blood group: " + dataSnapshot.child("blood").getValue().toString());
             }
 
             @Override
