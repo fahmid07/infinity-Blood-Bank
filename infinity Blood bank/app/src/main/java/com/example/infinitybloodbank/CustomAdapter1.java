@@ -72,7 +72,7 @@ public class CustomAdapter1 extends ArrayAdapter<Request> implements Filterable 
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int clk = (int) requestlist.get(position).clicked;
+                Long clk = (Long) requestlist.get(position).clicked;
                 clk++;
 
                 Request req = new Request(requestlist.get(position).name, requestlist.get(position).phone, requestlist.get(position).bg, requestlist.get(position).location, requestlist.get(position).district, requestlist.get(position).gender, requestlist.get(position).age, requestlist.get(position).reason, requestlist.get(position).status, requestlist.get(position).from, requestlist.get(position).key, clk);
@@ -87,7 +87,7 @@ public class CustomAdapter1 extends ArrayAdapter<Request> implements Filterable 
             @Override
             public void onClick(View v) {
 
-                int clk = (int) requestlist.get(position).clicked;
+                Long clk = (Long) requestlist.get(position).clicked;
                 clk++;
 
                 Request req = new Request(requestlist.get(position).name, requestlist.get(position).phone, requestlist.get(position).bg, requestlist.get(position).location, requestlist.get(position).district, requestlist.get(position).gender, requestlist.get(position).age, requestlist.get(position).reason, requestlist.get(position).status, requestlist.get(position).from, requestlist.get(position).key, clk);

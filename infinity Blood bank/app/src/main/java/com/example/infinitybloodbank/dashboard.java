@@ -48,7 +48,6 @@ public class dashboard extends AppCompatActivity implements NavigationView.OnNav
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-        //navigationView.setCheckedItem(R.id.nav_home);
 
         Intent i = getIntent();
         phnkey = i.getStringExtra("phone");

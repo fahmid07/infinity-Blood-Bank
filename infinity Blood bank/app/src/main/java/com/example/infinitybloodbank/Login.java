@@ -40,7 +40,7 @@ public class Login extends AppCompatActivity {
 
         in = findViewById(R.id.signin);
         up = findViewById(R.id.createac);
-        skp = findViewById(R.id.skip);
+        //skp = findViewById(R.id.skip);
         frgt = findViewById(R.id.forgot);
 
         progressB = findViewById(R.id.progressBar);

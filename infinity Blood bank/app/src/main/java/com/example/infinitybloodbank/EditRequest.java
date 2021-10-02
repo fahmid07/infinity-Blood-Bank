@@ -25,7 +25,7 @@ public class EditRequest extends AppCompatActivity {
     com.google.android.material.textfield.TextInputEditText phone, name, location, age, reason;
     private FirebaseAuth mAuth;
     DatabaseReference ref;
-    public int clicked;
+    public Long clicked;
     String userphn, uid;
 
     @Override
@@ -57,7 +57,7 @@ public class EditRequest extends AppCompatActivity {
                 dst.setText(snapshot.child("district").getValue().toString(), false);
                 bld.setText(snapshot.child("bg").getValue().toString(), false);
                 gndr.setText(snapshot.child("gender").getValue().toString(), false);
-                clicked = (int) snapshot.child("clicked").getValue();
+                clicked = (Long) snapshot.child("clicked").getValue();
             }
 
             @Override

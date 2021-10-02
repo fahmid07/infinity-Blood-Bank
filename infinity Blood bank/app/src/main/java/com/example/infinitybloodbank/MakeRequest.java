@@ -136,7 +136,7 @@ public class MakeRequest extends AppCompatActivity {
         String userphn = nm.substring(0, 10);
         String poster = userphn;
         System.out.println(poster);
-        int clicked = 0;
+        Long clicked = Long.valueOf(0);
         Request req = new Request(full_name, phone_no, blood, loc, district, gen, Age, reas, var, poster, key, clicked);
         //ref.child(key).setValue(req);
         FirebaseDatabase.getInstance().getReference("allRequest").child(key).setValue(req);

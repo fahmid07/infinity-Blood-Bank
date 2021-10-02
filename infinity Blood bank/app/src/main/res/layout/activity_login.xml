@@ -133,17 +133,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:visibility="gone"/>
 
-        <Button
-            android:id="@+id/skip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="110dp"
-            android:layout_marginBottom="10dp"
-            android:background="#00000000"
-            android:onClick="SkipButtonClick"
-            android:text="Skip for now"
-            android:textColor="#000000"
-            app:backgroundTint="@null" />
 
 
     </LinearLayout>
