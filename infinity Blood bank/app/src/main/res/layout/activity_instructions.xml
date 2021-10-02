@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Instructions"
+    android:padding="7dp">
+
+
+    <TextView
+        android:id="@+id/all_logo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tauri"
+        android:text="Instructions"
+        android:textColor="@color/mycolor"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tauri"
+        android:text="- Request Blood"
+        android:textColor="@color/mycolor"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/all_logo_text"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:id="@+id/all_logo_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="এই ফর্মটিতে প্রয়োজনীয় তথ্য গুলো পূরণ করে আপনার রিকোয়েস্ট পোস্ট করুন। সঠিক ঠিকানা, রোগীর বিবরণ এবং কয় ব্যাগ রক্ত প্রয়োজন সেসব বিষয় অবশ্যই উল্লেখ করার চেষ্টা করবেন। "
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:layout_marginTop="3dp"/>
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tauri"
+        android:text="- All Request"
+        android:textColor="@color/mycolor"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/all_logo_text1"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/all_logo_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="সকল রিকোয়েস্ট এখানে দেখতে পাবেন। প্রতিটি রিকোয়েস্টে ফোন কল এবং শেয়ার করার অপশন থাকবে। কল অপশনে ক্লিক করে রিকোয়েস্ট দাতার সাথে সরাসরি যোগাযোগ করতে পারবেন, এছাড়া শেয়ারের মাধ্যমে অন্যদের ও পাঠানো যাবে। সার্চ অপশনে জেলা ও ব্লাড গ্রুপ দিয়ে সার্চ করা যাবে। "
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView1"
+        android:layout_marginTop="3dp"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tauri"
+        android:text="- Search Donor"
+        android:textColor="@color/mycolor"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/all_logo_text2"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/all_logo_text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="সকল একটিভ ডোনারের লিস্ট এখানে দেখতে পাবেন। লিস্ট থেকে কোনো ডোনারে ক্লিক করলে কল দেয়া যাবে এবং লঙ্গ ক্লিক করলে ডোনারের ইনফরমেশন ক্লিপবোর্ডে কপি করা যাবে যা অন্য কাওকে মেসেজ করে পাঠাতে পারবেন। সার্চ অপশনে জেলা ও ব্লাড গ্রুপ দিয়ে সার্চ করা যাবে।"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        android:layout_marginTop="3dp"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tauri"
+        android:text="- Account"
+        android:textColor="@color/mycolor"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/all_logo_text3"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/all_logo_text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="আপনার একাউন্টের সব তথ্য এখানে দেখতে পারবেন। এডিট একাউন্টে গিয়ে সেসব তথ্য পরিবর্তন করতে পারবেন। Your Request থেকে আপনার পূর্বের করা সকল রিকোয়েস্ট ডিলেট অথবা আপডেট করতে পারবেন। "
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        android:layout_marginTop="3dp"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/tauri"
+        android:text="- Info"
+        android:textColor="@color/mycolor"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/all_logo_text4"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/all_logo_text5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="রক্ত দাতা ও গ্রহীতা সম্পর্কিত কিছু তথ্য এখানে দেখতে পাবেন। "
+        android:textSize="17sp"
+        android:transitionName="logo_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        android:layout_marginTop="3dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
