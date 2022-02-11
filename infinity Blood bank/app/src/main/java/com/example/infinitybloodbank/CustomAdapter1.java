@@ -112,7 +112,7 @@ public class CustomAdapter1 extends ArrayAdapter<Request> implements Filterable 
                 intent.putExtra(Intent.EXTRA_TEXT, ss);
                 //context.startActivity(intent);*/
 
-                Intent chooser = Intent.createChooser(intent, ss);
+                Intent chooser = Intent.createChooser(intent, null);
                 context.startActivity(chooser);
             }
         });
